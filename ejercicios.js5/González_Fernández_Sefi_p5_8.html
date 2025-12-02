@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema Solar — apellido_nombre_p5_8</title>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+</head>
+<body>
+
+<script>
+// VARIABLES PARA CADA PLANETA
+let centerX, centerY, sunSize, R1;
+
+// Mercurio
+let mercuryR, mercuryD, mercuryTheta, mercuryOmega;
+// Venus
+let venusR, venusD, venusTheta, venusOmega;
+// Tierra
+let earthR, earthD, earthTheta, earthOmega;
+// Marte
+let marsR, marsD, marsTheta, marsOmega;
+// Júpiter
+let jupiterR, jupiterD, jupiterTheta, jupiterOmega;
+// Saturno
+let saturnR, saturnD, saturnTheta, saturnOmega;
+// Urano
+let uranusR, uranusD, uranusTheta, uranusOmega;
+// Neptuno
+let neptuneR, neptuneD, neptuneTheta, neptuneOmega;
+let S
+
+function setup() {
+  createCanvas(800, 800);
+  S=0.4;
+
+  centerX = width / 2;
+  centerY = height / 2;
+
+  sunSize = 0.20 * min(width, height)*S;   // Tamaño del Sol
+  R1 = 0.12 * min(width, height)*S;        // Paso radial base
+
+  // RADIOS
+  mercuryR = 1 * R1;
+  venusR   = 2 * R1;
+  earthR   = 3 * R1;
+  marsR    = 4 * R1;
+  jupiterR = 5 * R1;
+  saturnR  = 6 * R1;
+  uranusR  = 7 * R1;
+  neptuneR = 8 * R1;
+
+  // DIÁMETRO
+  mercuryD = 0.10 * sunSize;
+  venusD   = 0.25 * sunSize;
+  earthD   = 0.26 * sunSize;
+  marsD    = 0.14 * sunSize;
+  jupiterD = 0.70 * sunSize;
+  saturnD  = 0.60 * sunSize;
+  uranusD  = 0.40 * sunSize;
+  neptuneD = 0.38 * sunSize;
+
+  // ÁNGULOS INICIALES
+  mercuryTheta = 0;
+  venusTheta   = PI / 3;
+  earthTheta   = PI / 2;
+  marsTheta    = PI;
+  jupiterTheta = 4 * PI / 3;
+  saturnTheta  = 5 * PI / 3;
+  uranusTheta  = 2.2 * PI;
+  neptuneTheta = 2.6 * PI;
+
+  // VELOCIDADES ANGULARES
+  mercuryOmega = 0.030;
+  venusOmega   = 0.012;
+  earthOmega   = 0.010;
+  marsOmega    = 0.008;
+  jupiterOmega = 0.004;
+  saturnOmega  = 0.003;
+  uranusOmega  = 0.002;
+  neptuneOmega = 0.0015;
+}
+
+function draw() {
+  background(0);
+
+  //  SOL
+  fill(255, 200, 0);
+  circle(centerX, centerY, sunSize);
+
+  // DIBUJAR PLANETAS
+  fill(200);                  // Mercurio
+  let xm = centerX + cos(mercuryTheta) * mercuryR;
+  let ym = centerY + sin(mercuryTheta) * mercuryR;
+  circle(xm, ym, mercuryD);
+
+  fill(255, 180, 0);          // Venus
+  let xv = centerX + cos(venusTheta) * venusR;
+  let yv = centerY + sin(venusTheta) * venusR;
+  circle(xv, yv, venusD);
+
+  fill(0, 150, 255);          // Tierra
+  let xe = centerX + cos(earthTheta) * earthR;
+  let ye = centerY + sin(earthTheta) * earthR;
+  circle(xe, ye, earthD);
+
+  fill(255, 60, 40);          // Marte
+  let xma = centerX + cos(marsTheta) * marsR;
+  let xya = centerY + sin(marsTheta) * marsR;
+  circle(xma, xya, marsD);
+
+  fill(210, 160, 120);        // Júpiter
+  let xj = centerX + cos(jupiterTheta) * jupiterR;
+  let yj = centerY + sin(jupiterTheta) * jupiterR;
+  circle(xj, yj, jupiterD);
+
+  fill(230, 200, 100);        // Saturno
+  let xs = centerX + cos(saturnTheta) * saturnR;
+  let ys = centerY + sin(saturnTheta) * saturnR;
+  circle(xs, ys, saturnD);
+
+  fill(150, 220, 255);        // Urano
+  let xu = centerX + cos(uranusTheta) * uranusR;
+  let yu = centerY + sin(uranusTheta) * uranusR;
+  circle(xu, yu, uranusD);
+
+  fill(60, 100, 255);         // Neptuno
+  let xn = centerX + cos(neptuneTheta) * neptuneR;
+  let yn = centerY + sin(neptuneTheta) * neptuneR;
+  circle(xn, yn, neptuneD);
+
+  // ACTUALIZAR ÁNGULOS
+  mercuryTheta += mercuryOmega;
+  venusTheta   += venusOmega;
+  earthTheta   += earthOmega;
+  marsTheta    += marsOmega;
+  jupiterTheta += jupiterOmega;
+  saturnTheta  += saturnOmega;
+  uranusTheta  += uranusOmega;
+  neptuneTheta += neptuneOmega;
+}
+
+</script>
+
+</body>
+</html>
