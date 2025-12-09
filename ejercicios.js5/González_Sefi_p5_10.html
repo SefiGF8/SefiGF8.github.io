@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema Sol–Tierra–Luna</title>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+</head>
+<body>
+
+<script>
+// VARIABLES
+
+// CENTRO Y EL SOL
+let centerX, centerY, sunSize;
+
+// TIERRA
+let earthR, earthD;
+let earthTheta, earthOmega;
+let earthX, earthY;
+
+// LUNA
+let moonR, moonD;
+let moonTheta, moonOmega;
+let moonX, moonY;
+
+function setup() {
+  
+  createCanvas(800, 600);
+  let minSize = min(width, height);
+
+  // CENTRO DEL SISTEMA O SOL
+  centerX = width / 2;
+  centerY = height / 2;
+
+  // SOL
+  sunSize = 0.22 * minSize; 
+
+  // TIERRA
+  earthR = 0.38 * minSize; 
+  earthD = 0.06 * minSize; 
+  earthTheta = PI / 2;      
+  earthOmega = 0.010;       
+
+  // LUNA (ÓRBITA AJUSTADA)
+  moonR = 1.4 * earthD;     
+  moonD = 0.40 * earthD;
+  moonTheta = 0;             
+  moonOmega = 0.080;         
+
+  ellipseMode(CENTER);
+}
+
+function draw() {
+ 
+  background(0);
+    
+  // SOL
+  noStroke();
+  fill(255, 204, 0);
+  circle(centerX, centerY, sunSize);
+
+  // ÓRBITA TIERRA
+  noFill();
+  stroke(80);
+  circle(centerX, centerY, 2 * earthR);
+
+  // POSICIÓN TIERRA
+  earthX = centerX + cos(earthTheta) * earthR;
+  earthY = centerY + sin(earthTheta) * earthR;
+
+  noStroke();
+  fill(0, 100, 255);
+  circle(earthX, earthY, earthD);
+
+  // ÓRBITA LUNA
+  noFill();
+  stroke(120);
+  circle(earthX, earthY, 2 * moonR);
+
+  // POSICIÓN LUNA
+  moonX = earthX + cos(moonTheta) * moonR;
+  moonY = earthY + sin(moonTheta) * moonR;
+
+  noStroke();
+  fill(200);
+  circle(moonX, moonY, moonD);
+
+  // ACTUALIZACIÓN ÁNGULOS
+  earthTheta += earthOmega;
+  moonTheta += moonOmega;
+}
+</script>
+
+</body>
+</html>
+
