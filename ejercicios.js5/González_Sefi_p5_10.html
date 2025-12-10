@@ -1,96 +1,54 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Sistema Sol–Tierra–Luna</title>
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+    <meta charset="UTF-8" />
+    <title>Sol animado</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
 </head>
 <body>
-
 <script>
-// VARIABLES
 
-// CENTRO Y EL SOL
-let centerX, centerY, sunSize;
-
-// TIERRA
-let earthR, earthD;
-let earthTheta, earthOmega;
-let earthX, earthY;
-
-// LUNA
-let moonR, moonD;
-let moonTheta, moonOmega;
-let moonX, moonY;
+let x, y, d, v;
 
 function setup() {
-  
-  createCanvas(800, 600);
-  let minSize = min(width, height);
+    createCanvas(1000, 800);
 
-  // CENTRO DEL SISTEMA O SOL
-  centerX = width / 2;
-  centerY = height / 2;
+    // Tamaño del sol
+    d = min(width, height) * 0.10;
 
-  // SOL
-  sunSize = 0.22 * minSize; 
+    // Posición inicial 
+    x = -d;
+    y = height * 0.20;
 
-  // TIERRA
-  earthR = 0.38 * minSize; 
-  earthD = 0.06 * minSize; 
-  earthTheta = PI / 2;      
-  earthOmega = 0.010;       
-
-  // LUNA (ÓRBITA AJUSTADA)
-  moonR = 1.4 * earthD;     
-  moonD = 0.40 * earthD;
-  moonTheta = 0;             
-  moonOmega = 0.080;         
-
-  ellipseMode(CENTER);
+    // Velocidad
+    v = 2;
 }
 
 function draw() {
- 
-  background(0);
-    
-  // SOL
-  noStroke();
-  fill(255, 204, 0);
-  circle(centerX, centerY, sunSize);
 
-  // ÓRBITA TIERRA
-  noFill();
-  stroke(80);
-  circle(centerX, centerY, 2 * earthR);
+    // CIELO
+    background(51, 204, 204);
 
-  // POSICIÓN TIERRA
-  earthX = centerX + cos(earthTheta) * earthR;
-  earthY = centerY + sin(earthTheta) * earthR;
+    // ☀️ SOL
+    fill(255, 255, 0);
+    stroke(255, 255, 0);
+    circle(x, y, d);
 
-  noStroke();
-  fill(0, 100, 255);
-  circle(earthX, earthY, earthD);
+    // Movimiento del sol
+    x += v;
 
-  // ÓRBITA LUNA
-  noFill();
-  stroke(120);
-  circle(earthX, earthY, 2 * moonR);
+    // Cuando sale de la derecha, vuelve a entrar por la izquierda
+    if (x > width + d) {
+        x = -d;
+    }
 
-  // POSICIÓN LUNA
-  moonX = earthX + cos(moonTheta) * moonR;
-  moonY = earthY + sin(moonTheta) * moonR;
-
-  noStroke();
-  fill(200);
-  circle(moonX, moonY, moonD);
-
-  // ACTUALIZACIÓN ÁNGULOS
-  earthTheta += earthOmega;
-  moonTheta += moonOmega;
+    // PRADO
+    fill(34, 139, 34);
+    stroke(0);
+    rect(0, 600, 1000, 200);
 }
-</script>
 
+</script>
 </body>
 </html>
 
