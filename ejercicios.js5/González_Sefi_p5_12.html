@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Sol, Luna y Calendario</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+</head>
+<body>
+<script>
+
+// VARIABLES
+// Sol
+let xS, yS, dS, rS, vS;
+
+// Luna
+let xL, yL, dL, rL, vL;
+
+//Fecha
+let dia, mes, anio;
+
+function setup() {
+    createCanvas(1000, 800);
+
+    //Sol
+    dS = min(width, height) * 0.10;
+    rS = dS / 2;
+    xS = -rS;
+    yS = height * 0.20;
+    vS = width / 400;
+
+    //Luna
+    dL = dS * 0.5;
+    rL = dL / 2;
+    xL = -width - rL;
+    yL = height * 0.30;
+    vL = vS;
+
+    //Fecha---
+    dia = 1;
+    mes = 1;
+    anio = 2025;
+}
+
+function draw() {
+
+    //Cielo
+    if (xS <= width + rS) {
+        background(51, 204, 204); // día
+    } else {
+        background(10); // noche
+    }
+
+    //Prado
+    noStroke();
+    fill(34, 139, 34);
+    rect(0, height * 0.75, width, height * 0.25);
+
+    //Sol
+    noStroke();
+    fill(255, 255, 0);
+    circle(xS, yS, dS);
+
+    //Luna
+    noStroke();
+    fill(200);
+    circle(xL, yL, dL);
+
+    //Movimiento
+    xS = xS + vS;
+    xL = xL + vL;
+
+    //Se acaba el día
+    if (xS > 2 * width + rS) {
+
+        // Reinicio posiciones
+        xS = -rS;
+        xL = -width - rL;
+
+        // Día
+        dia = dia + 1;
+
+        //Cambio de mes
+        if (dia > 30) {
+            dia = 1;
+            mes = mes + 1;
+        }
+
+        //Cambio de año
+        if (mes > 12) {
+            mes = 1;
+            anio = anio + 1;
+        }
+    }
+
+    //TEXTO DE LA FECHA---
+    noStroke();
+
+    // Color del texto según día/noche
+    if (xS <= width + rS) {
+        fill(0);     // día
+    } else {
+        fill(255);   // noche
+    }
+
+    textSize(20);
+    text("Fecha: (" + dia + ") (" + mes + ") (" + anio + ")", 10, 30);
+}
+
+</script>
+</body>
+</html>

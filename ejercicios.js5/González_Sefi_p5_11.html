@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Sol animado</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+</head>
+<body>
+<script>
+// Variables del Sol
+let xS, yS, dS, rS, vS;   // Sol
+
+// Variables de la Luna
+let xL, yL, dL, rL, vL;   // Luna
+
+function setup() {
+  // Definimos el lienzo
+  createCanvas(600, 800);
+  
+  // Inicialización del Sol
+  dS = min(width, height) * 0.20; // Tamaño del Sol
+  rS = dS / 2;                     // Radio del Sol
+  xS = -rS;                        // El Sol empieza fuera a la izquierda
+  yS = height / 4;                 // Altura del Sol
+  vS = width / 400;                // Velocidad del Sol
+  
+  // Inicialización de la Luna
+  dL = dS * 0.5;                   // Tamaño de la Luna (mitad del Sol)
+  rL = dL / 2;                     // Radio de la Luna
+  xL = -width - rL;                // La Luna empieza fuera a la izquierda
+  yL = height / 3;                 // Altura de la Luna
+  vL = vS;                         // La Luna se mueve a la misma velocidad que el Sol
+}
+
+function draw() {
+  // Fondo: Determina el cielo dependiendo de la posición del Sol
+  if (xS <= width + rS) {
+    background(0, 0, 255); // Día (cielo azul)
+  } else {
+    background(10);        // Noche (cielo negro)
+  }
+  
+  //Dibuja el suelo (opcional)
+  noStroke();
+  fill(20, 120, 40);
+  rect(0, 0.8 * height, width, 0.2 * height);
+  
+  //Dibuja el Sol
+  noStroke();
+  fill(245, 234, 10); // Color amarillo
+  circle(xS, yS, dS);
+  
+  //Dibuja la Luna
+  noStroke();
+  fill(200); // Color blanco
+  circle(xL, yL, dL);
+  
+  //actualiza las posiciones del Sol y la Luna
+  xS = xS + vS; 
+  xL = xL + vL;
+  
+  //Si el Sol ha salido completamente por la derecha
+  if (xS > 2 * width + rS) {
+    xS = -rS;           // El Sol reentra por la izquierda
+    xL = -width - rL;   // La Luna vuelve a esperar fuera a la izquierda
+  }
+  
+  //posiciones del Sol y Luna (opcional)
+  textSize(14);
+  stroke(255, 0, 0);
+  fill(255);
+  text(`xS: ${xS}`, 10, 10);
+  text(`xL: ${xL}`, 10, 28);
+}
+    </script>
+</body>
+</html>
+
+
