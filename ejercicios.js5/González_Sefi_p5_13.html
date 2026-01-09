@@ -6,42 +6,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
 </head>
 <body>
+
 <script>
-// VARIABLES 
 let xS, yS, dS, rS, vS;
 let xL, yL, dL, rL, vL;
 let dia, mes, anio;
 
-//VARIABLES CHICO
 let xP, yP, S, vP;
 let groundY, vY, jumpV, g;
-
-// CONTADOR
-let saltos = 0;
 
 function setup() {
     createCanvas(1000, 800);
 
-    // SOL
     dS = min(width, height) * 0.10;
     rS = dS / 2;
     xS = -rS;
     yS = height * 0.20;
     vS = width / 400;
 
-    // LUNA
     dL = dS * 0.5;
     rL = dL / 2;
     xL = -width - rL;
     yL = height * 0.30;
     vL = vS;
 
-    // FECHA
     dia = 1;
     mes = 1;
     anio = 2025;
 
-    // CHICO
     groundY = height * 0.75;
     S = 0.12 * min(width, height);
     xP = 0.25 * width;
@@ -54,25 +46,19 @@ function setup() {
 }
 
 function draw() {
-
-    // CIELO
     if (xS <= width + rS) background(51, 204, 204);
     else background(10);
 
-    // PRADO
     noStroke();
     fill(34, 139, 34);
     rect(0, groundY, width, height * 0.25);
 
-    // SOL
     fill(255, 255, 0);
     circle(xS, yS, dS);
 
-    // LUNA
     fill(200);
     circle(xL, yL, dL);
 
-    // MOVIMIENTO SOL / LUNA
     xS += vS;
     xL += vL;
 
@@ -84,18 +70,15 @@ function draw() {
         if (mes > 12) { mes = 1; anio++; }
     }
 
-    // FECHA
     fill(xS <= width + rS ? 0 : 255);
     textSize(20);
     text("Fecha: (" + dia + ") (" + mes + ") (" + anio + ")", 10, 30);
 
-    // MOVIMIENTO CHICO
     if (keyIsDown(LEFT_ARROW)) xP -= vP;
     else if (keyIsDown(RIGHT_ARROW)) xP += vP;
 
     xP = constrain(xP, 0, width);
 
-    // SALTO
     vY += g;
     yP += vY;
 
@@ -104,7 +87,6 @@ function draw() {
         vY = 0;
     }
 
-    // DIBUJO CHICO(ROJO)
     let rHead = 0.20 * S;
     let bodyL = 0.60 * S;
     let armL  = 0.45 * S;
@@ -114,35 +96,27 @@ function draw() {
     let shoulderY = hipY - bodyL;
     let headY = shoulderY - rHead;
 
-    stroke(255, 0, 0);          // COLOR ROJO
+    stroke(255, 0, 0);
     strokeWeight(0.06 * S);
     noFill();
 
     circle(xP, headY, 2 * rHead);
     line(xP, shoulderY, xP, hipY);
 
-    line(xP - 0.25*S, shoulderY, xP + 0.25*S, shoulderY);
-    line(xP - 0.25*S, shoulderY, xP - 0.25*S, shoulderY + armL);
-    line(xP + 0.25*S, shoulderY, xP + 0.25*S, shoulderY + armL);
+    line(xP - 0.25 * S, shoulderY, xP + 0.25 * S, shoulderY);
+    line(xP - 0.25 * S, shoulderY, xP - 0.25 * S, shoulderY + armL);
+    line(xP + 0.25 * S, shoulderY, xP + 0.25 * S, shoulderY + armL);
 
-    line(xP, hipY, xP - 0.18*S, yP);
-    line(xP, hipY, xP + 0.18*S, yP);
-
-    // CONTADOR SALTOS (ROJO)
-    noStroke();
-    fill(255, 0, 0);
-    textSize(20);
-    text("Saltos: " + saltos, width - 140, 30);
+    line(xP, hipY, xP - 0.18 * S, yP);
+    line(xP, hipY, xP + 0.18 * S, yP);
 }
 
-// SALTO
 function keyPressed() {
     if (keyCode === UP_ARROW && yP >= groundY) {
         vY = jumpV;
-        saltos++;
     }
 }
-
 </script>
+
 </body>
 </html>
