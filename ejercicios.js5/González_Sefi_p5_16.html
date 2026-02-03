@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tarea 16</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+</head>
+<body>
+
+<script>
+
+let xS, yS, dS, rS, vS;
+let xL, yL, dL, rL, vL;
+let dia, mes, anio;
+
+let xP, yP, S, vP;
+let groundY, vY, jumpV, g;
+
+// Disparo
+let xD, yD;
+let tD, vD;
+let disparoActivo;
+
+// Objetivo
+let xO, yO, wO, hO, vO;
+
+// Puntos (T16)
+let puntos;
+
+function setup() {
+  createCanvas(1000, 800);
+
+  // Sol
+  dS = min(width, height) * 0.10;
+  rS = dS / 2;
+  xS = -rS;
+  yS = height * 0.20;
+  vS = width / 400;
+
+  // Luna
+  dL = dS * 0.5;
+  rL = dL / 2;
+  xL = -width - rL;
+  yL = height * 0.30;
+  vL = vS;
+
+  // Calendario
+  dia = 1;
+  mes = 1;
+  anio = 2025;
+
+  // Stickman
+  groundY = height * 0.75;
+  S = 0.12 * min(width, height);
+  xP = 0.25 * width;
+  yP = groundY;
+  vP = width / 150;
+
+  vY = 0;
+  jumpV = -0.03 * height;
+  g = 0.0016 * height;
+
+  // Disparo
+  tD = width * 0.02;
+  vD = height * 0.02;
+  disparoActivo = false;
+
+  // Objetivo
+  wO = width * 0.08;
+  hO = height * 0.05;
+  yO = height * 0.25;
+  reiniciarObjetivo();
+
+  // Puntos
+  puntos = 0;
+}
+
+function draw() {
+
+  // Cielo
+  if (xS <= width + rS) background(51, 204, 204);
+  else background(10);
+
+  // Suelo
+  noStroke();
+  fill(34, 139, 34);
+  rect(0, groundY, width, height * 0.25);
+
+  // Sol y luna
+  dibujarSol();
+  dibujarLuna();
+
+  // Movimiento sol y luna + calendario
+  xS += vS;
+  xL += vL;
+
+  if (xS > 2 * width + rS) {
+    xS = -rS;
+    xL = -width - rL;
+    actualizarCalendario();
+  }
+
+  // Mover objetivo
+  xO = xO + vO;
+  if (xO > width + wO || xO < -wO) {
+    reiniciarObjetivo();
+  }
+
+  // Mover disparo + impacto
+  if (disparoActivo == true) {
+    yD = yD - vD;
+
+    if (yD < 0) {
+      disparoActivo = false;
+    }
+
+    if (
+      xD > xO &&
+      xD < xO + wO &&
+      yD > yO &&
+      yD < yO + hO
+    ) {
+      puntos = puntos + 1;
+      disparoActivo = false;
+      reiniciarObjetivo();
+    }
+  }
+
+  // Dibujar objetivo
+  dibujarObjetivo();
+
+  // Dibujar disparo
+  if (disparoActivo == true) {
+    dibujarDisparo();
+  }
+
+  // Movimiento stickman
+  if (keyIsDown(LEFT_ARROW)) xP -= vP;
+  else if (keyIsDown(RIGHT_ARROW)) xP += vP;
+
+  xP = constrain(xP, 0, width);
+
+  vY += g;
+  yP += vY;
+
+  if (yP > groundY) {
+    yP = groundY;
+    vY = 0;
+  }
+
+  // Dibujar stickman
+  dibujarStickman();
+
+
+  dibujarCalendario();
+  dibujarPuntos();
+}
+
+function keyPressed() {
+  if (keyCode === UP_ARROW && yP >= groundY) {
+    vY = jumpV;
+  }
+
+  if (key === ' ' && disparoActivo == false) {
+    xD = xP;
+    yD = yP;
+    disparoActivo = true;
+  }
+}
+
+function dibujarSol() {
+  fill(255, 255, 0);
+  circle(xS, yS, dS);
+}
+
+function dibujarLuna() {
+  fill(200);
+  circle(xL, yL, dL);
+}
+
+function dibujarObjetivo() {
+  fill(255, 0, 0);
+  rect(xO, yO, wO, hO);
+}
+
+function dibujarDisparo() {
+  fill(255);
+  ellipse(xD, yD, tD);
+}
+
+function dibujarStickman() {
+  let rHead = 0.20 * S;
+  let bodyL = 0.60 * S;
+  let armL  = 0.45 * S;
+  let legL  = 0.55 * S;
+
+  let hipY = yP - legL;
+  let shoulderY = hipY - bodyL;
+  let headY = shoulderY - rHead;
+
+  stroke(255, 0, 0);
+  strokeWeight(0.06 * S);
+  noFill();
+
+  circle(xP, headY, 2 * rHead);
+  line(xP, shoulderY, xP, hipY);
+
+  line(xP - 0.25 * S, shoulderY, xP + 0.25 * S, shoulderY);
+  line(xP - 0.25 * S, shoulderY, xP - 0.25 * S, shoulderY + armL);
+  line(xP + 0.25 * S, shoulderY, xP + 0.25 * S, shoulderY + armL);
+
+  line(xP, hipY, xP - 0.18 * S, yP);
+  line(xP, hipY, xP + 0.18 * S, yP);
+}
+
+function dibujarCalendario() {
+  if (xS <= width + rS) {
+    fill(0);
+  } else {
+    fill(255);
+  }
+  noStroke();
+  textSize(20);
+  text("Fecha: (" + dia + ") (" + mes + ") (" + anio + ")", 10, 30);
+}
+
+function dibujarPuntos() {
+  if (xS <= width + rS) {
+    fill(0);
+  } else {
+    fill(255);
+  }
+  noStroke();
+  textSize(20);
+  text("Puntos: " + puntos, 10, 60);
+}
+ 
+
+function actualizarCalendario() {
+  dia++;
+  if (dia > 30) { dia = 1; mes++; }
+  if (mes > 12) { mes = 1; anio++; }
+}
+
+function reiniciarObjetivo() {
+  let direccion = random(-1, 1);
+  if (direccion < 0) vO = random(-5, -2);
+  else vO = random(2, 5);
+
+  if (vO > 0) xO = -wO;
+  else xO = width + wO;
+}
+
+</script>
+
+</body>
+</html>
