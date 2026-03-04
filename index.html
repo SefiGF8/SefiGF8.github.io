@@ -51,7 +51,60 @@ Desde pequeña, siempre me ha fascinado cómo funcionan los ordenadores y cómo 
                     <a href="ejercicios_ml5js/González_Sefi_ml5_02.html"> ML5 — Detécta y captura (02) </a> <br>
                     <a href="https://github.com/SefiGF8/SefiGF8.github.io/tree/main/ejercicios_ml5js/ejercicios_ml5/capturas/m5_detecta"> Enlace a carpeta capturas </a> <br>
                     <a href="ejercicios_ml5js/González_Sefi_ml5_03_bodypose.html"> BodyPose: captura de 3 posturas y reporte de fallas </a> <br>
-                    
+ 
+                    <div id="Explicación tarea 3">
+                    Reporte de Fallas en la Detección de Posturas con BodyPose
+
+Falla 1: Puntos desaparecen o están mal colocados por mala iluminación
+
+Qué ocurre: Los puntos clave (las marcas que indican las partes del cuerpo) desaparecen o se colocan mal.
+
+Cuándo pasa: Esto ocurre cuando la luz no es suficiente o hay contraluz (cuando la luz viene desde detrás de la persona).
+
+Por qué pasa: Si la luz no es buena, la cámara no puede detectar bien el cuerpo, lo que hace que los puntos clave no aparezcan correctamente.
+
+Cómo lo comprobé: Probé con poca luz y con contraluz (luz desde atrás) y los puntos clave no se veían bien o desaparecían. <br> 
+
+Falla 2: Movimiento rápido causa puntos erráticos
+
+Qué ocurre: Los puntos clave se mueven de forma extraña o saltan cuando la persona se mueve rápido.
+
+Cuándo pasa: Esto pasa cuando la persona mueve rápido alguna parte del cuerpo, como las manos o las piernas.
+
+Por qué pasa: El modelo no puede seguir los movimientos rápidos, y como resultado, los puntos no se colocan bien.
+
+Cómo lo comprobé: Hice algunos movimientos rápidos mientras la cámara estaba detectando la postura y los puntos se movían de forma errática. <br> 
+
+Falla 3: Problemas si la persona está demasiado cerca o lejos
+
+Qué ocurre: Si la persona está demasiado cerca o demasiado lejos de la cámara, no se detectan bien los puntos.
+
+Cuándo pasa: Esto ocurre cuando la persona se aleja mucho o se acerca demasiado a la cámara.
+
+Por qué pasa: La cámara no puede captar bien los detalles si la persona está muy cerca (se ve demasiado grande) o muy lejos (se ve muy pequeña).
+
+Cómo lo comprobé: Moví la cámara a diferentes distancias y cuando estaba demasiado cerca o lejos, algunos puntos no se detectaron correctamente. <br> 
+
+Falla 4: Puntos desaparecen si el cuerpo está parcialmente fuera de plano
+
+Qué ocurre: Si el cuerpo está fuera del campo de visión de la cámara (por ejemplo, las piernas o los brazos fuera de la cámara), algunos puntos desaparecen o no se colocan bien.
+
+Cuándo pasa: Esto sucede cuando partes del cuerpo no están en el ángulo correcto para ser vistas por la cámara.
+
+Por qué pasa: El sistema necesita ver todo el cuerpo para detectar los puntos correctamente. Si no ve algunas partes, no puede adivinar dónde deberían estar.
+
+Cómo lo comprobé: Me aseguré de que mis piernas o brazos estuvieran fuera de la cámara y los puntos en esas áreas desaparecieron o se pusieron mal. <br> 
+
+Falla 5: Oclusiones por objetos que tapan partes del cuerpo
+
+Qué ocurre: Cuando llevo algo que cubre parte de mi cuerpo, como una mochila o un abrigo, los puntos clave no se detectan o se colocan mal.
+
+Cuándo pasa: Esto ocurre cuando algo (como una mochila o ropa ancha) cubre partes del cuerpo, como los brazos o las piernas.
+
+Por qué pasa: El modelo no puede detectar bien las partes del cuerpo que están tapadas por objetos, lo que hace que los puntos no se coloquen bien.
+
+Cómo lo comprobé: Usé una mochila y la cámara no detectó bien los puntos de la espalda y los brazos. <br> 
+                    </div>
                     <img src="imagene/carita felix.png" alt=cara_feliz height=200>
                 
                      </div>
