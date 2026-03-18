@@ -14,8 +14,8 @@
 </head>
 <body>
   <h1>TM-1 · Teachable Machine (2 clases)</h1>
-  <p><b>Alumno:</b> Apellidos, Nombre</p>
-  <p><b>Objeto elegido:</b> (escribe aquí tu objeto)</p>
+  <p><b>Alumno:</b> Sefi González Fernández</p>
+  <p><b>Objeto elegido:</b> Libro rojo</p>
 
   <div class="box">
     <h2>Carpeta de evidencias (OneDrive)</h2>
@@ -23,7 +23,11 @@
       Pega aquí el enlace a tu carpeta de OneDrive con acceso “cualquiera con el enlace”.
       Debe contener las capturas y documentos solicitados en cada fase.
     </p>
-    <p><b>Enlace OneDrive:</b> <a href="#" target="_blank">PEGAR AQUÍ</a></p>
+    <p><b>Enlace OneDrive:</b> 
+      <a href="https://educastur-my.sharepoint.com/:f:/g/personal/tol48659_educastur_es/IgAppg6iP3JSSrejkm4EhgjoAXfc_sLiOTqQKeZdSDpeud4?e=kOjmJB" target="_blank">
+        Ver carpeta de evidencias
+      </a>
+    </p>
   </div>
 
   <div class="box">
@@ -45,12 +49,23 @@
      A continuación detallo los errores detectados en el proceso
     </p>
     <ol>
-      <li>Fallo 1: …</li>
-      <li>Fallo 2: …</li>
-      <li>Fallo 3: …</li>
+      <li>
+        Fallo 1: El modelo detectaba "objeto" cuando no tenía el libro rojo. 
+        Ocurrió cuando llevaba ropa roja o había algo rojo en el fondo. 
+        Creo que pasó porque el modelo se fijó demasiado en el color rojo y no en la forma del libro.
+      </li>
+      <li>
+        Fallo 2: El modelo dudaba entre "neutral" y "objeto". 
+        Ocurrió cuando el libro estaba tapado o solo se veía una parte. 
+        Creo que pasó porque en el entrenamiento casi siempre salía el libro completo.
+      </li>
+      <li>
+        Fallo 3: El modelo decía "neutral" aunque estaba enseñando el libro rojo. 
+        Ocurrió con poca luz o cuando el libro estaba lejos. 
+        Creo que pasó porque faltaban ejemplos con distintas condiciones de luz y distancia.
+      </li>
     </ol>
   </div>
-
 
 </body>
 </html>
