@@ -36,6 +36,8 @@
       display: flex;
       flex-wrap: wrap;
       gap: 15px;
+      justify-content: center;
+      margin-top: 15px;
     }
 
     img {
@@ -51,8 +53,9 @@
     }
 
     .boton {
-      display: inline-block;
-      margin-top: 10px;
+      display: block;
+      width: fit-content;
+      margin: 15px auto;
       padding: 10px 15px;
       background: #0b57d0;
       color: white;
@@ -69,25 +72,29 @@
 <body>
   <div class="pagina">
     <h1>Evidencias del bloque de Realidad Aumentada</h1>
-    <p>En esta página se recogen las evidencias de las tareas realizadas en el bloque de realidad aumentada.</p>
+
+    <p>
+      En esta página se recogen las evidencias de las tareas realizadas en el bloque de realidad aumentada.
+    </p>
 
     <section class="bloque-tarea">
       <h2>Tarea 1 — Primera escena con marcador</h2>
 
       <p>
-        En esta tarea se ha desarrollado una primera experiencia de realidad aumentada utilizando un marcador.
-        Al enfocar el marcador con el dispositivo móvil, se muestra un objeto 3D (un cubo rojo) sobre la imagen.
-        Se ha utilizado AR.js junto con A-Frame para la creación de la escena.
+        En esta tarea se ha desarrollado una experiencia de realidad aumentada utilizando un marcador.
+        Al enfocarlo con la cámara, aparece un objeto 3D (un cubo) sobre la imagen.
       </p>
 
+      <!-- BOTÓN -->
       <a href="González_Sefi_ra_01.html" target="_blank" class="boton">
         Abrir experiencia
       </a>
 
+      <!-- IMÁGENES -->
       <div class="imagenes">
-        <img src="imagenes/evidencia_ra_01_1.jpg" alt="Vista general de la experiencia RA">
-        <img src="imagenes/evidencia_ra_01_2.jpg" alt="Detalle del objeto 3D sobre el marcador">
-        <img src="imagenes/evidencia_ra_01_3.jpg" alt="Interacción con la experiencia en el móvil">
+        <img src="imagenes/evidencia_ra_01_1.jpg" alt="Evidencia 1">
+        <img src="imagenes/evidencia_ra_01_2.jpg" alt="Evidencia 2">
+        <img src="imagenes/evidencia_ra_01_3.jpg" alt="Evidencia 3">
       </div>
 
     </section>
