@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Evidencias del bloque de Realidad Aumentada</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -31,53 +32,64 @@
       border-bottom: 1px solid #ccc;
     }
 
+    .imagenes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
     img {
-      max-width: 300px;
+      max-width: 280px;
       width: 100%;
-      display: block;
-      margin-bottom: 15px;
+      border-radius: 8px;
       border: 1px solid #ccc;
+      transition: transform 0.2s;
     }
 
-    a {
-      color: #0b57d0;
+    img:hover {
+      transform: scale(1.05);
     }
 
-    /* Opcional: pequeño espacio entre imágenes si se quieren en fila */
-    .bloque-tarea a img {
-      margin-right: 10px;
-      margin-bottom: 15px;
+    .boton {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #0b57d0;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+
+    .boton:hover {
+      background: #0842a0;
     }
   </style>
 </head>
+
 <body>
   <div class="pagina">
     <h1>Evidencias del bloque de Realidad Aumentada</h1>
-    <p>En esta página iré incorporando las evidencias de las tareas del bloque de realidad aumentada.</p>
+    <p>En esta página se recogen las evidencias de las tareas realizadas en el bloque de realidad aumentada.</p>
 
     <section class="bloque-tarea">
       <h2>Tarea 1 — Primera escena con marcador</h2>
-      <p>Aquí debes escribir una breve descripción de lo que has hecho en esta tarea.</p>
 
       <p>
-        Enlace a la experiencia:
-        <a href="apellido_nombre_ra_01.html" target="_blank">Abrir tarea 1</a>
+        En esta tarea se ha desarrollado una primera experiencia de realidad aumentada utilizando un marcador.
+        Al enfocar el marcador con el dispositivo móvil, se muestra un objeto 3D (un cubo rojo) sobre la imagen.
+        Se ha utilizado AR.js junto con A-Frame para la creación de la escena.
       </p>
 
-      <!-- Primera imagen -->
-      <a href="https://educastur-my.sharepoint.com/:i:/g/personal/tol48659_educastur_es/IQDmsU4StjNqSIQGTAJ9rL6SASz-DfYNHw1sxyOTzsmYRFI?e=L43ncv" target="_blank">
-        <img src="https://educastur-my.sharepoint.com/:i:/g/personal/tol48659_educastur_es/IQDmsU4StjNqSIQGTAJ9rL6SASz-DfYNHw1sxyOTzsmYRFI?e=L43ncv" alt="Evidencia 1 de la tarea 1">
+      <a href="González_Sefi_ra_01.html" target="_blank" class="boton">
+        Abrir experiencia
       </a>
 
-      <!-- Segunda imagen -->
-      <a href="https://educastur-my.sharepoint.com/:i:/g/personal/tol48659_educastur_es/IQB4GLKSaThNRaX4vN5JdOajAeJuZXOkfuHrn7noolh00YA?e=lD2HDo" target="_blank">
-        <img src="https://educastur-my.sharepoint.com/:i:/g/personal/tol48659_educastur_es/IQB4GLKSaThNRaX4vN5JdOajAeJuZXOkfuHrn7noolh00YA?e=lD2HDo" alt="Evidencia 2 de la tarea 1">
-      </a>
+      <div class="imagenes">
+        <img src="imagenes/evidencia_ra_01_1.jpg" alt="Vista general de la experiencia RA">
+        <img src="imagenes/evidencia_ra_01_2.jpg" alt="Detalle del objeto 3D sobre el marcador">
+        <img src="imagenes/evidencia_ra_01_3.jpg" alt="Interacción con la experiencia en el móvil">
+      </div>
 
-      <!-- Tercera imagen -->
-      <a href="https://educastur-my.sharepoint.com/:i:/g/personal/tol48659_educastur_es/IQCoAj2llkOyTpTNPpmO8Om2AaAliV60AQG19Y9So7uI_Kc?e=TExiT6" target="_blank">
-        <img src="https://educastur-my.sharepoint.com/:i:/g/personal/tol48659_educastur_es/IQCoAj2llkOyTpTNPpmO8Om2AaAliV60AQG19Y9So7uI_Kc?e=TExiT6" alt="Evidencia 3 de la tarea 1">
-      </a>
     </section>
 
   </div>
